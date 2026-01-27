@@ -1,0 +1,234 @@
+
+import SwiftUI
+import AVFoundation
+
+struct CameraSetupView: View {
+    let reps: Int
+    
+    @State private var goToSession = false
+    
+    @State private var isTaken = false
+    @State private var capturedImage: UIImage? = nil
+    @State private var barPoints: [CGPoint] = []
+
+    var instructionText: String {
+        switch barPoints.count {
+        case 0: return "📍 Tap the left-end of the bar"
+        case 1: return "📍 Now, tap the right-end of the bar"
+        case 2: return "✅ Bar set! Tap 'Reset' or 'Continue'"
+        default: return ""
+        }
+    }
+
+    var body: some View {
+        ZStack {
+            if let image = capturedImage {
+                GeometryReader { geo in
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: geo.size.width, height: geo.size.height)
+                        .clipped()
+                        .gesture(
+                            DragGesture(minimumDistance: 0)
+                                .onEnded { value in
+                                    if barPoints.count < 2 {
+                                        barPoints.append(value.location)
+                                    }
+                                }
+                        )
+                        .overlay(
+                            ZStack {
+                                ForEach(barPoints, id: \.self) { point in
+                                    Circle()
+                                        .fill(Color.red)
+                                        .frame(width: 16, height: 16)
+                                        .position(point)
+                                }
+                                if barPoints.count == 2 {
+                                    Path { path in
+                                        path.move(to: barPoints[0])
+                                        path.addLine(to: barPoints[1])
+                                    }
+                                    .stroke(Color.red, lineWidth: 4)
+                                }
+                            }
+                        )
+                }
+                .ignoresSafeArea()
+
+                VStack {
+                    Text(instructionText)
+                        .font(.headline)
+                        .padding()
+                        .background(Color.black.opacity(0.6))
+                        .foregroundColor(.white)
+                        .cornerRadius(12)
+                        .padding(.top, 50)
+
+                    Spacer()
+
+                    if barPoints.count == 2 {
+                        HStack(spacing: 20) {
+                            Button(action: {
+                                barPoints.removeAll()
+                            }) {
+                                Text("🔄 Reset")
+                                    .frame(maxWidth: .infinity)
+                                    .padding()
+                                    .background(Color.white.opacity(0.8))
+                                    .foregroundColor(.black)
+                                    .cornerRadius(10)
+                            }
+
+                            Button("✅ Continue") {
+                                goToSession = true
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.green.opacity(0.8))
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                        }
+                        .padding(.horizontal, 20)
+                        .padding(.bottom, 40)
+                    }
+                }
+            } else {
+                CameraPreview(isTaken: $isTaken, capturedImage: $capturedImage)
+                    .ignoresSafeArea()
+
+                VStack {
+                    Spacer()
+                    if !isTaken {
+                        Button(action: {
+                            isTaken = true
+                        }) {
+                            Text("📸 Take Photo")
+                                .font(.headline)
+                                .padding()
+                                .background(Color.white.opacity(0.7))
+                                .foregroundColor(.black)
+                                .cornerRadius(10)
+                        }
+                        .padding(.bottom, 40)
+                    }
+                }
+            }
+
+            // ✅ NavigationLink outside the condition so it works
+            NavigationLink(
+                destination: WorkoutSessionView(reps: reps, barPoints: barPoints),
+                isActive: $goToSession
+            ) {
+                EmptyView()
+            }
+        }
+    }
+}
+
+struct CameraPreview: UIViewRepresentable {
+    @Binding var isTaken: Bool
+    @Binding var capturedImage: UIImage?
+
+    func makeUIView(context: Context) -> PreviewView {
+        let view = PreviewView()
+        context.coordinator.setupSession(for: view)
+        return view
+    }
+
+    func updateUIView(_ uiView: PreviewView, context: Context) {
+        if isTaken && capturedImage == nil {
+            context.coordinator.captureFrameMatchingPreview(from: uiView)
+        }
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(isTaken: $isTaken, capturedImage: $capturedImage)
+    }
+}
+
+class PreviewView: UIView {
+    var videoPreviewLayer: AVCaptureVideoPreviewLayer {
+        layer as! AVCaptureVideoPreviewLayer
+    }
+
+    override class var layerClass: AnyClass {
+        AVCaptureVideoPreviewLayer.self
+    }
+}
+
+class Coordinator: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
+    private let session = AVCaptureSession()
+    private let output = AVCaptureVideoDataOutput()
+    private var previewView: PreviewView?
+    private var captureImage = false
+
+    @Binding var isTaken: Bool
+    @Binding var capturedImage: UIImage?
+
+    init(isTaken: Binding<Bool>, capturedImage: Binding<UIImage?>) {
+        _isTaken = isTaken
+        _capturedImage = capturedImage
+    }
+
+    func setupSession(for view: PreviewView) {
+        previewView = view
+
+        guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front),
+              let input = try? AVCaptureDeviceInput(device: device) else {
+            return
+        }
+
+        session.beginConfiguration()
+        if session.canAddInput(input) {
+            session.addInput(input)
+        }
+
+        if session.canAddOutput(output) {
+            output.setSampleBufferDelegate(self, queue: DispatchQueue(label: "camera.frame.queue"))
+            output.alwaysDiscardsLateVideoFrames = true
+            session.addOutput(output)
+        }
+
+        if let connection = output.connection(with: .video) {
+            if connection.isVideoOrientationSupported {
+                connection.videoOrientation = .portrait
+            }
+            if connection.isVideoMirroringSupported {
+                connection.isVideoMirrored = true
+            }
+        }
+
+        session.sessionPreset = .high
+        session.commitConfiguration()
+
+        view.videoPreviewLayer.session = session
+        view.videoPreviewLayer.videoGravity = .resizeAspectFill
+        session.startRunning()
+    }
+
+    func captureFrameMatchingPreview(from view: PreviewView) {
+        self.captureImage = true
+    }
+
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard captureImage,
+              let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            return
+        }
+
+        captureImage = false
+        let ciImage = CIImage(cvPixelBuffer: imageBuffer)
+        let context = CIContext()
+
+        if let cgImage = context.createCGImage(ciImage, from: ciImage.extent) {
+            let mirroredImage = UIImage(cgImage: cgImage, scale: UIScreen.main.scale, orientation: .up)
+
+            DispatchQueue.main.async {
+                self.capturedImage = mirroredImage
+                self.session.stopRunning()
+            }
+        }
+    }
+}
