@@ -1,5 +1,6 @@
 import SwiftUI
 
+
 struct ContentView: View {
     var body: some View {
         NavigationStack {
@@ -8,40 +9,40 @@ struct ContentView: View {
 
                 VStack(spacing: 10) {
                     Text("autumnFall – Strength in every season 🍂")
-                        .font(.title)
+                        .font(AppTheme.Fonts.title)
                         .fontWeight(.bold)
                         .multilineTextAlignment(.center)
-                        .foregroundColor(.black)
+                        .foregroundColor(AppTheme.Colors.textPrimary)
 
                     Text(getQuoteOfTheDay())
                         .italic()
                         .multilineTextAlignment(.center)
-                        .foregroundColor(.black)
+                        .foregroundColor(AppTheme.Colors.textPrimary)
                         .padding(.horizontal)
                 }
 
                 VStack(spacing: 20) {
                     NavigationLink("Begin pull-ups", value: "Workout")
-                        .font(.headline)
+                        .font(AppTheme.Fonts.headline)
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(Color.brown)
-                        .foregroundColor(.white)
+                        .background(AppTheme.Colors.primary)
+                        .foregroundColor(AppTheme.Colors.onPrimary)
                         .cornerRadius(12)
 
                     NavigationLink("Stats", value: "Stats")
-                        .font(.headline)
+                        .font(AppTheme.Fonts.headline)
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(Color.yellow)
-                        .foregroundColor(.black)
+                        .background(AppTheme.Colors.accent)
+                        .foregroundColor(AppTheme.Colors.textPrimary)
                         .cornerRadius(12)
                 }
 
                 Spacer()
             }
             .padding()
-            .background(Color(red: 0.96, green: 0.90, blue: 0.80))
+            .background(AppTheme.Colors.background)
 
             .navigationDestination(for: String.self) { value in
                 if value == "Workout" {
@@ -51,6 +52,7 @@ struct ContentView: View {
                 }
             }
         }
+        .environmentObject(WorkoutSessionStore())
     }
 
     func getQuoteOfTheDay() -> String {

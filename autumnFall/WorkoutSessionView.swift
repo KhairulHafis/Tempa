@@ -1,9 +1,13 @@
+// Uses shared Theme and Model abstractions
 
 import SwiftUI
 import AVFoundation
 import Vision
+//import WorkoutSessionStore
 
 struct WorkoutSessionView: View {
+    @EnvironmentObject var sessionStore: WorkoutSessionStore
+    
     let reps: Int
     let barPoints: [CGPoint]
 
@@ -44,11 +48,11 @@ struct WorkoutSessionView: View {
                         path.move(to: scaledPoints[0])
                         path.addLine(to: scaledPoints[1])
                     }
-                    .stroke(wristsAreNearBar() ? Color.green : Color.red, lineWidth: 4)
+                    .stroke(wristsAreNearBar() ? AppTheme.Colors.success : AppTheme.Colors.failure, lineWidth: 4)
 
                     ForEach(scaledPoints, id: \.self) { point in
                         Circle()
-                            .fill(Color.red)
+                            .fill(AppTheme.Colors.failure)
                             .frame(width: 16, height: 16)
                             .position(point)
                     }
@@ -75,17 +79,17 @@ struct WorkoutSessionView: View {
                     path.addLine(to: rWrist)
                 }
             }
-            .stroke(Color.green, lineWidth: 4)
+            .stroke(AppTheme.Colors.success, lineWidth: 4)
 
             if let neck = neckPoint {
                 EnlargedPulsingCircle().position(neck)
             }
 
             if let lw = leftWrist {
-                Circle().stroke(Color.green, lineWidth: 3).frame(width: 20, height: 20).position(lw)
+                Circle().stroke(AppTheme.Colors.success, lineWidth: 3).frame(width: 20, height: 20).position(lw)
             }
             if let rw = rightWrist {
-                Circle().stroke(Color.green, lineWidth: 3).frame(width: 20, height: 20).position(rw)
+                Circle().stroke(AppTheme.Colors.success, lineWidth: 3).frame(width: 20, height: 20).position(rw)
             }
 
             VStack {
@@ -93,19 +97,18 @@ struct WorkoutSessionView: View {
                 VStack(spacing: 12) {
                     Button(action: endWorkout) {
                         Text("End Session")
-                            .font(.subheadline)
+                            .font(AppTheme.Fonts.subheadline)
                             .padding(10)
-                            .background(Color.red.opacity(0.8))
-                            .foregroundColor(.white)
+                            .background(AppTheme.Colors.failure.opacity(0.8))
+                            .foregroundColor(Color.white)
                             .cornerRadius(10)
                     }
                     VStack(spacing: 8) {
                         Text("Reps: \(repCount) / \(reps)")
-                            .font(.title)
-                            .bold()
-                            .foregroundColor(.white)
+                            .font(AppTheme.Fonts.title.bold())
+                            .foregroundColor(Color.white)
                         Text("⏱ \(timeElapsed) sec")
-                            .foregroundColor(.white)
+                            .foregroundColor(Color.white)
                     }
                 }
                 .padding(.bottom, 60)
@@ -114,14 +117,14 @@ struct WorkoutSessionView: View {
             if !timerStarted {
                 VStack {
                     Text(wristsAreNearBar() ? "Wrist position OK – Starting soon..." : "Align both wrists with the bar to begin")
-                        .foregroundColor(.white)
+                        .foregroundColor(Color.white)
                         .padding(10)
                         .background(Color.black.opacity(0.6))
                         .cornerRadius(10)
                     if showCountdown {
                         Text("\(countdownValue)")
                             .font(.system(size: 48, weight: .bold))
-                            .foregroundColor(.white)
+                            .foregroundColor(Color.white)
                             .padding(.top, 10)
                     }
                 }
@@ -205,16 +208,8 @@ struct WorkoutSessionView: View {
     func endWorkout() {
         timer?.invalidate()
         endTime = Date()
-        saveToUserDefaults()
+        sessionStore.addSession(WorkoutSession(repsCompleted: repCount, timeTaken: timeElapsed, date: startTime ?? Date(), goal: reps))
         showSummary = true
-    }
-
-    func saveToUserDefaults() {
-        var sessions = (try? JSONDecoder().decode([WorkoutSession].self, from: UserDefaults.standard.data(forKey: "sessions") ?? Data())) ?? []
-        sessions.append(WorkoutSession(repsCompleted: repCount, timeTaken: timeElapsed, date: startTime ?? Date(), goal: reps))
-        if let encoded = try? JSONEncoder().encode(sessions) {
-            UserDefaults.standard.set(encoded, forKey: "sessions")
-        }
     }
 }
 

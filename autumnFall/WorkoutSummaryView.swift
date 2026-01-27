@@ -1,40 +1,42 @@
 import SwiftUI
+import Foundation
+//import WorkoutSessionStore
 
 struct WorkoutSummaryView: View {
     let session: WorkoutSession
+    @EnvironmentObject private var workoutSessionStore: WorkoutSessionStore
 
     var body: some View {
         VStack(spacing: 20) {
             Text("Workout Summary 💪")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .foregroundColor(.black)
+                .font(AppTheme.Fonts.largeTitleBold)
+                .foregroundColor(AppTheme.Colors.textPrimary)
 
             VStack(spacing: 8) {
-                Text("📅 \(session.date.formatted(date: .abbreviated, time: .shortened))")
+                Text("📅 \(session.date.formatted(date: Foundation.Date.FormatStyle.DateStyle.abbreviated, time: Foundation.Date.FormatStyle.TimeStyle.shortened))")
                 Text("🎯 Goal: \(session.goal) reps")
                 Text("✅ Completed: \(session.repsCompleted) reps")
                 Text("⏱️ Time: \(session.timeTaken) seconds")
                 Text(session.repsCompleted >= session.goal ? "🏆 Goal Met!" : "❌ Goal Missed")
-                    .font(.headline)
-                    .foregroundColor(session.repsCompleted >= session.goal ? .green : .red)
+                    .font(AppTheme.Fonts.headline)
+                    .foregroundColor(session.repsCompleted >= session.goal ? AppTheme.Colors.success : AppTheme.Colors.failure)
             }
-            .foregroundColor(.black)
+            .foregroundColor(AppTheme.Colors.textPrimary)
 
             Spacer()
 
-            NavigationLink(destination: ContentView()) {
+            NavigationLink(destination: ContentView().environmentObject(workoutSessionStore)) {
                 Label("Back to Home", systemImage: "house")
-                    .font(.headline)
+                    .font(AppTheme.Fonts.headline)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(Color.brown)
-                    .foregroundColor(.white)
+                    .background(AppTheme.Colors.accent)
+                    .foregroundColor(AppTheme.Colors.textOnAccent)
                     .cornerRadius(12)
             }
         }
         .padding()
-        .background(Color(red: 0.96, green: 0.90, blue: 0.80))
+        .background(AppTheme.Colors.backgroundSecondary)
         .navigationBarBackButtonHidden(true)
     }
 }

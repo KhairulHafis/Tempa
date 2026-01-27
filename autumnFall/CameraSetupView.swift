@@ -1,9 +1,13 @@
+// Uses shared Theme and Model abstractions
 
 import SwiftUI
 import AVFoundation
 
+
 struct CameraSetupView: View {
     let reps: Int
+    
+    @EnvironmentObject var sessionStore: WorkoutSessionStore
     
     @State private var goToSession = false
     
@@ -41,7 +45,7 @@ struct CameraSetupView: View {
                             ZStack {
                                 ForEach(barPoints, id: \.self) { point in
                                     Circle()
-                                        .fill(Color.red)
+                                        .fill(AppTheme.Colors.primary)
                                         .frame(width: 16, height: 16)
                                         .position(point)
                                 }
@@ -50,7 +54,7 @@ struct CameraSetupView: View {
                                         path.move(to: barPoints[0])
                                         path.addLine(to: barPoints[1])
                                     }
-                                    .stroke(Color.red, lineWidth: 4)
+                                    .stroke(AppTheme.Colors.primary, lineWidth: 4)
                                 }
                             }
                         )
@@ -59,10 +63,10 @@ struct CameraSetupView: View {
 
                 VStack {
                     Text(instructionText)
-                        .font(.headline)
+                        .font(AppTheme.Fonts.headline)
                         .padding()
-                        .background(Color.black.opacity(0.6))
-                        .foregroundColor(.white)
+                        .background(AppTheme.Colors.background.opacity(0.7))
+                        .foregroundColor(AppTheme.Colors.textPrimary)
                         .cornerRadius(12)
                         .padding(.top, 50)
 
@@ -70,14 +74,14 @@ struct CameraSetupView: View {
 
                     if barPoints.count == 2 {
                         HStack(spacing: 20) {
-                            Button(action: {
+                            Button {
                                 barPoints.removeAll()
-                            }) {
+                            } label: {
                                 Text("🔄 Reset")
                                     .frame(maxWidth: .infinity)
                                     .padding()
-                                    .background(Color.white.opacity(0.8))
-                                    .foregroundColor(.black)
+                                    .background(AppTheme.Colors.background.opacity(0.7))
+                                    .foregroundColor(AppTheme.Colors.textPrimary)
                                     .cornerRadius(10)
                             }
 
@@ -86,8 +90,8 @@ struct CameraSetupView: View {
                             }
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.green.opacity(0.8))
-                            .foregroundColor(.white)
+                            .background(AppTheme.Colors.accent)
+                            .foregroundColor(AppTheme.Colors.textOnAccent)
                             .cornerRadius(10)
                         }
                         .padding(.horizontal, 20)
@@ -101,14 +105,14 @@ struct CameraSetupView: View {
                 VStack {
                     Spacer()
                     if !isTaken {
-                        Button(action: {
+                        Button {
                             isTaken = true
-                        }) {
+                        } label: {
                             Text("📸 Take Photo")
-                                .font(.headline)
+                                .font(AppTheme.Fonts.headline)
                                 .padding()
-                                .background(Color.white.opacity(0.7))
-                                .foregroundColor(.black)
+                                .background(AppTheme.Colors.background.opacity(0.7))
+                                .foregroundColor(AppTheme.Colors.textPrimary)
                                 .cornerRadius(10)
                         }
                         .padding(.bottom, 40)
@@ -118,12 +122,14 @@ struct CameraSetupView: View {
 
             // ✅ NavigationLink outside the condition so it works
             NavigationLink(
-                destination: WorkoutSessionView(reps: reps, barPoints: barPoints),
+                destination: WorkoutSessionView(reps: reps, barPoints: barPoints)
+                    .environmentObject(sessionStore),
                 isActive: $goToSession
             ) {
                 EmptyView()
             }
         }
+        .background(AppTheme.Colors.background)
     }
 }
 
