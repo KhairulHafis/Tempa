@@ -1,45 +1,35 @@
-// AutumnFall: Pull-Up Workout Tracker
-//
-// AutumnFall is an iOS app designed to help you track your pull-up workouts using your device’s camera and Apple’s Vision framework. Set your goals, let the app guide your setup, and watch your progress!
-//
-// Features:
-//
-// - Pull-Up Goal Setting: Enter your desired number of pull-ups before each session.
-// - Camera Bar Setup: Use the camera to mark your pull-up bar’s location for accurate tracking.
-// - Automatic Rep Counting: The app tracks your body movement using computer vision and counts each successful pull-up.
-// - Workout Summary: See your performance right after each session, including rep count, time, and goal status.
-// - Stats & History: Visualize progress with charts and review your streaks and workout history.
-//
-// How It Works:
-//
-// 1. Set Your Goal: Enter how many pull-ups you want to do.
-// 2. Bar Setup: Take a photo and tap both ends of your pull-up bar.
-// 3. Get Ready: The app tracks your wrists and waits for you to align with the bar.
-// 4. Start Pull-Ups: The timer begins; reps are counted automatically.
-// 5. View Results: After finishing, see your summary and stats.
-//
-// Technologies Used:
-//
-// - SwiftUI for user interface and navigation
-// - AVFoundation for camera access
-// - Vision for body pose detection
-// - Charts for workout data visualization
-// - UserDefaults for local data persistence
-//
-// Getting Started:
-//
-// 1. Clone the Repository:
-//    git clone https://github.com/KhairulHafis/autumnFall.git
-// 2. Open in Xcode:
-//    - Open the .xcodeproj or .xcworkspace file.
-// 3. Build & Run:
-//    - Run the app on a real iOS device (camera features require hardware).
-//
-//
-// License
-// This project is for educational and portfolio use. See LICENSE if present.
-//
-// ---
-//
-// Questions or Suggestions?
-// Feel free to open an issue or fork the repo to contribute!
+# AutumnFall: Pull-Up Workout Tracker
+
+AutumnFall is an iOS app that tracks pull-up workouts using your iPhone’s camera and Apple’s Vision framework. Set a rep goal, align your pull-up bar during setup, and let the app count reps automatically while you train.
+
+## Features
+
+- **Pull-up goal setting**: Set a target number of reps before each session.
+- **Bar setup with camera**: Mark the pull-up bar position for consistent, accurate tracking.
+- **Automatic rep counting**: Uses computer vision to track movement and count completed pull-ups.
+- **Workout summary**: Review reps, duration, and whether you hit your goal right after the session.
+- **Stats and history**: Track progress over time with charts, streaks, and workout history.
+
+## How it works
+
+1. **Set your goal**: Enter the number of pull-ups you want to complete.
+2. **Bar setup**: Take a photo and tap both ends of your pull-up bar.
+3. **Get ready**: The app tracks your wrists and waits for you to align with the bar.
+4. **Start pull-ups**: The timer starts and reps are counted automatically.
+5. **View results**: See your session summary and updated stats.
+
+## Tech stack
+
+- **SwiftUI**: UI and navigation
+- **AVFoundation**: Camera capture
+- **Vision**: Body pose detection
+- **Charts**: Data visualization
+- **UserDefaults**: Local persistence
+
+## Getting started
+
+### 1) Clone the repo
+
+```bash
+git clone https://github.com/KhairulHafis/autumnFall.git
+
