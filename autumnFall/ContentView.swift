@@ -2,8 +2,10 @@ import SwiftUI
 
 
 struct ContentView: View {
+    @State private var path: [String] = []
+
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             VStack(spacing: 40) {
                 Spacer()
 
@@ -46,13 +48,12 @@ struct ContentView: View {
 
             .navigationDestination(for: String.self) { value in
                 if value == "Workout" {
-                    WorkoutView()
+                    WorkoutView(path: $path)
                 } else if value == "Stats" {
                     StatsView()
                 }
             }
         }
-        .environmentObject(WorkoutSessionStore())
     }
 
     func getQuoteOfTheDay() -> String {

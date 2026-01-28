@@ -5,6 +5,7 @@ import Foundation
 struct WorkoutSummaryView: View {
     let session: WorkoutSession
     @EnvironmentObject private var workoutSessionStore: WorkoutSessionStore
+    @Binding var path: [String]
 
     var body: some View {
         VStack(spacing: 20) {
@@ -25,7 +26,7 @@ struct WorkoutSummaryView: View {
 
             Spacer()
 
-            NavigationLink(destination: ContentView().environmentObject(workoutSessionStore)) {
+            Button(action: { path.removeAll() }) {
                 Label("Back to Home", systemImage: "house")
                     .font(AppTheme.Fonts.headline)
                     .padding()

@@ -8,6 +8,7 @@ struct CameraSetupView: View {
     let reps: Int
     
     @EnvironmentObject var sessionStore: WorkoutSessionStore
+    @Binding var path: [String]
     
     @State private var goToSession = false
     
@@ -122,7 +123,7 @@ struct CameraSetupView: View {
 
             // ✅ NavigationLink outside the condition so it works
             NavigationLink(
-                destination: WorkoutSessionView(reps: reps, barPoints: barPoints)
+                destination: WorkoutSessionView(path: $path, reps: reps, barPoints: barPoints)
                     .environmentObject(sessionStore),
                 isActive: $goToSession
             ) {
@@ -238,3 +239,4 @@ class Coordinator: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         }
     }
 }
+

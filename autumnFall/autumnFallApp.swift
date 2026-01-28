@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct autumnFallApp: App {
+    @StateObject private var sessionStore = WorkoutSessionStore()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(sessionStore)
         }
     }
 }

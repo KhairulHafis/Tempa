@@ -7,6 +7,7 @@ struct WorkoutView: View {
     @State private var goToCamera = false
     
     @EnvironmentObject var sessionStore: WorkoutSessionStore
+    @Binding var path: [String]
 
     var body: some View {
         VStack(spacing: 30) {
@@ -47,7 +48,7 @@ struct WorkoutView: View {
         .padding()
         .background(AppTheme.Colors.background)
         .navigationDestination(isPresented: $goToCamera) {
-            CameraSetupView(reps: Int(reps) ?? 0)
+            CameraSetupView(reps: Int(reps) ?? 0, path: $path)
         }
     }
 }

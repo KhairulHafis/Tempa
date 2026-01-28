@@ -7,6 +7,7 @@ import Vision
 
 struct WorkoutSessionView: View {
     @EnvironmentObject var sessionStore: WorkoutSessionStore
+    @Binding var path: [String]
     
     let reps: Int
     let barPoints: [CGPoint]
@@ -131,7 +132,10 @@ struct WorkoutSessionView: View {
                 .padding(.top, 100)
             }
 
-            NavigationLink(destination: WorkoutSummaryView(session: WorkoutSession(repsCompleted: repCount, timeTaken: timeElapsed, date: startTime ?? Date(), goal: reps)), isActive: $showSummary) {
+            NavigationLink(
+                destination: WorkoutSummaryView(session: WorkoutSession(repsCompleted: repCount, timeTaken: timeElapsed, date: startTime ?? Date(), goal: reps), path: $path),
+                isActive: $showSummary
+            ) {
                 EmptyView()
             }
         }
@@ -297,3 +301,4 @@ struct CameraView: UIViewRepresentable {
         }
     }
 }
+
