@@ -10,7 +10,7 @@ struct ContentView: View {
                 Spacer()
 
                 VStack(spacing: 10) {
-                    Text("autumnFall – Strength in every season 🍂")
+                    Text("Tempa - Forged in discipline 🔨🏋️‍♀️")
                         .font(AppTheme.Fonts.title)
                         .fontWeight(.bold)
                         .multilineTextAlignment(.center)
@@ -60,7 +60,7 @@ struct ContentView: View {
         let quotes = [
             "Push yourself, because no one else is going to do it for you.",
             "Small steps every day lead to big results.",
-            "Autumn shows us how beautiful change can be 🍁"
+            "Autumn shows us how beautiful change can be."
         ]
         return quotes.randomElement() ?? ""
     }
