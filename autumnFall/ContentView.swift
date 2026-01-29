@@ -63,8 +63,8 @@ struct ContentView: View {
             "Your future self is watching what you do today.",
             "You don’t rise to your goals, you fall to your systems.",
             "Confidence is built, not found.",
-            "Focus on what you can control, and let the rest go.",
-            "Keep showing up. That’s the whole secret."
+            "Focus on what you can control, and let the rest go."
+            
         ]
         return quotes.randomElement() ?? ""
     }
