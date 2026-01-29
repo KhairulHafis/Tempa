@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct Tempa: App {
+struct TempaApp: App {
     @StateObject private var sessionStore = WorkoutSessionStore()
     var body: some Scene {
         WindowGroup {
@@ -10,3 +10,5 @@ struct Tempa: App {
         }
     }
 }
+
+//Test to see if I can pull from new GIT url
