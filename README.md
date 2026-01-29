@@ -31,5 +31,5 @@ Tempa is an iOS app that tracks pull-up workouts using your iPhone’s camera an
 ### 1) Clone the repo
 
 ```bash
-git clone https://github.com/KhairulHafis/Tempa.git
+git clone https://github.com/KhairulHafis/autumnFall.git
 
