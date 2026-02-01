@@ -1,5 +1,6 @@
 import SwiftUI
 
+/// Centralized theme definitions for colors and fonts used across the app.
 struct AppTheme {
     struct Colors {
         static let background = Color(red: 0.96, green: 0.90, blue: 0.80)

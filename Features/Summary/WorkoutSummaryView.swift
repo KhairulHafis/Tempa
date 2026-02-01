@@ -2,6 +2,9 @@ import SwiftUI
 import Foundation
 //import WorkoutSessionStore
 
+/// Presents a summary for a completed `WorkoutSession`.
+///
+/// Displays date, goal, reps completed, and total time, and offers a button to return to the home screen.
 struct WorkoutSummaryView: View {
     let session: WorkoutSession
     @EnvironmentObject private var workoutSessionStore: WorkoutSessionStore

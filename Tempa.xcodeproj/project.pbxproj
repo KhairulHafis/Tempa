@@ -6,8 +6,47 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A4D3D3CD2F2ECC9200C66F21 /* BarOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3D3BB2F2ECC9200C66F21 /* BarOverlayView.swift */; };
+		A4D3D3CE2F2ECC9200C66F21 /* BodyPoseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3D3BC2F2ECC9200C66F21 /* BodyPoseService.swift */; };
+		A4D3D3CF2F2ECC9200C66F21 /* CameraSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3D3BD2F2ECC9200C66F21 /* CameraSetupView.swift */; };
+		A4D3D3D02F2ECC9200C66F21 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3D3BE2F2ECC9200C66F21 /* CameraView.swift */; };
+		A4D3D3D22F2ECC9200C66F21 /* PoseOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3D3C02F2ECC9200C66F21 /* PoseOverlayView.swift */; };
+		A4D3D3D32F2ECC9200C66F21 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3D3C12F2ECC9200C66F21 /* PreviewView.swift */; };
+		A4D3D3D42F2ECC9200C66F21 /* RepCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3D3C22F2ECC9200C66F21 /* RepCounter.swift */; };
+		A4D3D3D52F2ECC9200C66F21 /* RepCounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3D3C32F2ECC9200C66F21 /* RepCounterTests.swift */; };
+		A4D3D3D62F2ECC9200C66F21 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3D3C42F2ECC9200C66F21 /* StatsView.swift */; };
+		A4D3D3D82F2ECC9200C66F21 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3D3C62F2ECC9200C66F21 /* Theme.swift */; };
+		A4D3D3D92F2ECC9200C66F21 /* WorkoutSessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3D3C72F2ECC9200C66F21 /* WorkoutSessionRepository.swift */; };
+		A4D3D3DA2F2ECC9200C66F21 /* WorkoutSessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3D3C82F2ECC9200C66F21 /* WorkoutSessionStore.swift */; };
+		A4D3D3DB2F2ECC9200C66F21 /* WorkoutSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3D3C92F2ECC9200C66F21 /* WorkoutSessionView.swift */; };
+		A4D3D3DC2F2ECC9200C66F21 /* WorkoutSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3D3CA2F2ECC9200C66F21 /* WorkoutSessionViewModel.swift */; };
+		A4D3D3DD2F2ECC9200C66F21 /* WorkoutSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3D3CB2F2ECC9200C66F21 /* WorkoutSummaryView.swift */; };
+		A4D3D3DE2F2ECC9200C66F21 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3D3CC2F2ECC9200C66F21 /* WorkoutView.swift */; };
+		A4D3D3E12F2ECCD100C66F21 /* EnlargedPulsingCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3D3E02F2ECCD100C66F21 /* EnlargedPulsingCircle.swift */; };
+		A4EBDA352F2ED51E0050768B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A4EBDA342F2ED51E0050768B /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		A494A1252E16CE7900207553 /* Tempa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tempa.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4D3D3BB2F2ECC9200C66F21 /* BarOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarOverlayView.swift; sourceTree = "<group>"; };
+		A4D3D3BC2F2ECC9200C66F21 /* BodyPoseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyPoseService.swift; sourceTree = "<group>"; };
+		A4D3D3BD2F2ECC9200C66F21 /* CameraSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSetupView.swift; sourceTree = "<group>"; };
+		A4D3D3BE2F2ECC9200C66F21 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		A4D3D3C02F2ECC9200C66F21 /* PoseOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseOverlayView.swift; sourceTree = "<group>"; };
+		A4D3D3C12F2ECC9200C66F21 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
+		A4D3D3C22F2ECC9200C66F21 /* RepCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepCounter.swift; sourceTree = "<group>"; };
+		A4D3D3C32F2ECC9200C66F21 /* RepCounterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepCounterTests.swift; sourceTree = "<group>"; };
+		A4D3D3C42F2ECC9200C66F21 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		A4D3D3C62F2ECC9200C66F21 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		A4D3D3C72F2ECC9200C66F21 /* WorkoutSessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSessionRepository.swift; sourceTree = "<group>"; };
+		A4D3D3C82F2ECC9200C66F21 /* WorkoutSessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSessionStore.swift; sourceTree = "<group>"; };
+		A4D3D3C92F2ECC9200C66F21 /* WorkoutSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSessionView.swift; sourceTree = "<group>"; };
+		A4D3D3CA2F2ECC9200C66F21 /* WorkoutSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSessionViewModel.swift; sourceTree = "<group>"; };
+		A4D3D3CB2F2ECC9200C66F21 /* WorkoutSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSummaryView.swift; sourceTree = "<group>"; };
+		A4D3D3CC2F2ECC9200C66F21 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
+		A4D3D3E02F2ECCD100C66F21 /* EnlargedPulsingCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnlargedPulsingCircle.swift; sourceTree = "<group>"; };
+		A4EBDA342F2ED51E0050768B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -32,6 +71,12 @@
 		A494A11C2E16CE7900207553 = {
 			isa = PBXGroup;
 			children = (
+				A4D3D3E72F2ECEFC00C66F21 /* Tests */,
+				A4D3D3E62F2ECEF700C66F21 /* Shared */,
+				A4D3D3E52F2ECEE300C66F21 /* Features */,
+				A4D3D3E42F2ECEDC00C66F21 /* Services */,
+				A4D3D3E32F2ECED500C66F21 /* Persistence */,
+				A4D3D3E22F2ECEB400C66F21 /* Domain */,
 				A494A1272E16CE7900207553 /* Tempa */,
 				A494A1262E16CE7900207553 /* Products */,
 			);
@@ -43,6 +88,138 @@
 				A494A1252E16CE7900207553 /* Tempa.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A4D3D3E22F2ECEB400C66F21 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				A4D3D3C22F2ECC9200C66F21 /* RepCounter.swift */,
+				A4D3D3C82F2ECC9200C66F21 /* WorkoutSessionStore.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		A4D3D3E32F2ECED500C66F21 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				A4D3D3C72F2ECC9200C66F21 /* WorkoutSessionRepository.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		A4D3D3E42F2ECEDC00C66F21 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A4D3D3F02F2ED15B00C66F21 /* Camera */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A4D3D3E52F2ECEE300C66F21 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				A4D3D3ED2F2ED00F00C66F21 /* Summary */,
+				A4D3D3EC2F2ECFF300C66F21 /* Workout */,
+				A4D3D3EB2F2ECFED00C66F21 /* Stats */,
+				A4D3D3EA2F2ECFD700C66F21 /* CameraSetup */,
+				A4D3D3E92F2ECFC800C66F21 /* Overlays */,
+				A4D3D3E82F2ECFB100C66F21 /* WorkoutSession */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		A4D3D3E62F2ECEF700C66F21 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				A4D3D3EF2F2ED02A00C66F21 /* Theme */,
+				A4D3D3EE2F2ED02400C66F21 /* Components */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		A4D3D3E72F2ECEFC00C66F21 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				A4D3D3C32F2ECC9200C66F21 /* RepCounterTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		A4D3D3E82F2ECFB100C66F21 /* WorkoutSession */ = {
+			isa = PBXGroup;
+			children = (
+				A4D3D3CA2F2ECC9200C66F21 /* WorkoutSessionViewModel.swift */,
+				A4D3D3C92F2ECC9200C66F21 /* WorkoutSessionView.swift */,
+			);
+			path = WorkoutSession;
+			sourceTree = "<group>";
+		};
+		A4D3D3E92F2ECFC800C66F21 /* Overlays */ = {
+			isa = PBXGroup;
+			children = (
+				A4D3D3C02F2ECC9200C66F21 /* PoseOverlayView.swift */,
+				A4D3D3BB2F2ECC9200C66F21 /* BarOverlayView.swift */,
+			);
+			path = Overlays;
+			sourceTree = "<group>";
+		};
+		A4D3D3EA2F2ECFD700C66F21 /* CameraSetup */ = {
+			isa = PBXGroup;
+			children = (
+				A4D3D3BD2F2ECC9200C66F21 /* CameraSetupView.swift */,
+			);
+			path = CameraSetup;
+			sourceTree = "<group>";
+		};
+		A4D3D3EB2F2ECFED00C66F21 /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				A4D3D3C42F2ECC9200C66F21 /* StatsView.swift */,
+			);
+			path = Stats;
+			sourceTree = "<group>";
+		};
+		A4D3D3EC2F2ECFF300C66F21 /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				A4D3D3CC2F2ECC9200C66F21 /* WorkoutView.swift */,
+			);
+			path = Workout;
+			sourceTree = "<group>";
+		};
+		A4D3D3ED2F2ED00F00C66F21 /* Summary */ = {
+			isa = PBXGroup;
+			children = (
+				A4D3D3CB2F2ECC9200C66F21 /* WorkoutSummaryView.swift */,
+			);
+			path = Summary;
+			sourceTree = "<group>";
+		};
+		A4D3D3EE2F2ED02400C66F21 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A4D3D3E02F2ECCD100C66F21 /* EnlargedPulsingCircle.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A4D3D3EF2F2ED02A00C66F21 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				A4D3D3C62F2ECC9200C66F21 /* Theme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		A4D3D3F02F2ED15B00C66F21 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				A4D3D3C12F2ECC9200C66F21 /* PreviewView.swift */,
+				A4D3D3BE2F2ECC9200C66F21 /* CameraView.swift */,
+				A4D3D3BC2F2ECC9200C66F21 /* BodyPoseService.swift */,
+				A4EBDA342F2ED51E0050768B /* README.md */,
+			);
+			path = Camera;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -109,6 +286,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4EBDA352F2ED51E0050768B /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +297,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4D3D3E12F2ECCD100C66F21 /* EnlargedPulsingCircle.swift in Sources */,
+				A4D3D3CD2F2ECC9200C66F21 /* BarOverlayView.swift in Sources */,
+				A4D3D3CE2F2ECC9200C66F21 /* BodyPoseService.swift in Sources */,
+				A4D3D3CF2F2ECC9200C66F21 /* CameraSetupView.swift in Sources */,
+				A4D3D3D02F2ECC9200C66F21 /* CameraView.swift in Sources */,
+				A4D3D3D22F2ECC9200C66F21 /* PoseOverlayView.swift in Sources */,
+				A4D3D3D32F2ECC9200C66F21 /* PreviewView.swift in Sources */,
+				A4D3D3D42F2ECC9200C66F21 /* RepCounter.swift in Sources */,
+				A4D3D3D52F2ECC9200C66F21 /* RepCounterTests.swift in Sources */,
+				A4D3D3D62F2ECC9200C66F21 /* StatsView.swift in Sources */,
+				A4D3D3D82F2ECC9200C66F21 /* Theme.swift in Sources */,
+				A4D3D3D92F2ECC9200C66F21 /* WorkoutSessionRepository.swift in Sources */,
+				A4D3D3DA2F2ECC9200C66F21 /* WorkoutSessionStore.swift in Sources */,
+				A4D3D3DB2F2ECC9200C66F21 /* WorkoutSessionView.swift in Sources */,
+				A4D3D3DC2F2ECC9200C66F21 /* WorkoutSessionViewModel.swift in Sources */,
+				A4D3D3DD2F2ECC9200C66F21 /* WorkoutSummaryView.swift in Sources */,
+				A4D3D3DE2F2ECC9200C66F21 /* WorkoutView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,6 +2,9 @@ import SwiftUI
 import Foundation
 
 // MARK: - WorkoutSession Model (reuse your existing struct, here for context)
+
+/// Immutable model representing a single workout session.
+/// Stores reps completed, duration, date, and the goal at the time of the session.
 struct WorkoutSession: Identifiable, Codable {
     let id: UUID
     let repsCompleted: Int
@@ -19,12 +22,16 @@ struct WorkoutSession: Identifiable, Codable {
 }
 
 // MARK: - Session Persistence & State
-class WorkoutSessionStore: ObservableObject {
+
+/// Observable store for workout sessions, backed by a `WorkoutSessionRepository`.
+/// Publishes session updates and provides basic metrics (e.g., streak calculation).
+final class WorkoutSessionStore: ObservableObject {
     @Published private(set) var sessions: [WorkoutSession] = []
 
-    private let storageKey = "sessions"
+    private let repository: WorkoutSessionRepository
 
-    init() {
+    init(repository: WorkoutSessionRepository = UserDefaultsWorkoutSessionRepository()) {
+        self.repository = repository
         loadSessions()
     }
 
@@ -34,17 +41,11 @@ class WorkoutSessionStore: ObservableObject {
     }
 
     func loadSessions() {
-        guard let data = UserDefaults.standard.data(forKey: storageKey),
-              let decoded = try? JSONDecoder().decode([WorkoutSession].self, from: data) else {
-            sessions = []
-            return
-        }
-        sessions = decoded
+        sessions = repository.load()
     }
 
     private func saveSessions() {
-        guard let encoded = try? JSONEncoder().encode(sessions) else { return }
-        UserDefaults.standard.set(encoded, forKey: storageKey)
+        repository.save(sessions)
     }
 
     // Calculate streaks or other metrics here
@@ -68,3 +69,4 @@ class WorkoutSessionStore: ObservableObject {
         return streak
     }
 }
+

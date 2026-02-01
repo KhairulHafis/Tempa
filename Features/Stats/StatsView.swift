@@ -3,6 +3,9 @@ import Charts
 //import Theme
 //import WorkoutSessionStore
 
+/// Displays charts and workout history using data from `WorkoutSessionStore`.
+///
+/// Shows a recent reps line chart and a list of past sessions with goal completion status.
 struct StatsView: View {
     @EnvironmentObject var sessionStore: WorkoutSessionStore
 
@@ -97,3 +100,4 @@ struct StatsView: View {
         .background(AppTheme.Colors.background.ignoresSafeArea())
     }
 }
+

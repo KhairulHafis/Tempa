@@ -155,16 +155,6 @@ struct CameraPreview: UIViewRepresentable {
     }
 }
 
-class PreviewView: UIView {
-    var videoPreviewLayer: AVCaptureVideoPreviewLayer {
-        layer as! AVCaptureVideoPreviewLayer
-    }
-
-    override class var layerClass: AnyClass {
-        AVCaptureVideoPreviewLayer.self
-    }
-}
-
 class Coordinator: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     private let session = AVCaptureSession()
     private let output = AVCaptureVideoDataOutput()

@@ -2,6 +2,9 @@
 import SwiftUI
 //import WorkoutSessionStore
 
+/// Collects the desired rep count and navigates to camera setup.
+///
+/// Binds a text field for reps, validates input, and presents `CameraSetupView` to configure the bar.
 struct WorkoutView: View {
     @State private var reps: String = ""
     @State private var goToCamera = false
