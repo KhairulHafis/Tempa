@@ -23,7 +23,7 @@ final class VisionBodyPoseService: NSObject, AVCaptureVideoDataOutputSampleBuffe
         stop()
     }
 
-    /// Starts the capture session if not already running.
+    /// Starts the capture session if not already running...
     func start() {
         guard !session.isRunning else { return }
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
