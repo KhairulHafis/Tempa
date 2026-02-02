@@ -67,7 +67,8 @@ final class VisionBodyPoseService: NSObject, AVCaptureVideoDataOutputSampleBuffe
     /// Captures sample buffers and performs Vision body pose detection, yielding normalized joints on the main thread.
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-        let requestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .leftMirrored)
+        // Buffer is already portrait and mirrored by AVCaptureConnection; use .up to avoid double mirroring.
+        let requestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .up)
         let request = VNDetectHumanBodyPoseRequest { [weak self] req, _ in
             guard let observations = req.results as? [VNHumanBodyPoseObservation],
                   let first = observations.first else { return }

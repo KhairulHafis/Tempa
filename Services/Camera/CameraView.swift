@@ -43,6 +43,11 @@ struct CameraView: UIViewRepresentable {
         func attach(to view: PreviewView) {
             view.videoPreviewLayer.session = service.session
             view.videoPreviewLayer.videoGravity = .resizeAspectFill
+            if let conn = view.videoPreviewLayer.connection {
+                if conn.isVideoOrientationSupported { conn.videoOrientation = .portrait }
+                conn.automaticallyAdjustsVideoMirroring = false
+                if conn.isVideoMirroringSupported { conn.isVideoMirrored = true }
+            }
             service.start()
         }
 
