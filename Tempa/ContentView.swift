@@ -36,8 +36,8 @@ struct ContentView: View {
                         .font(AppTheme.Fonts.headline)
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(AppTheme.Colors.accent)
-                        .foregroundColor(AppTheme.Colors.textPrimary)
+                        .background(AppTheme.Colors.primary)
+                        .foregroundColor(AppTheme.Colors.onPrimary)
                         .cornerRadius(12)
                 }
 

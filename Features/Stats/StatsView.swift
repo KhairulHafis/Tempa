@@ -8,6 +8,7 @@ import Charts
 /// Shows a recent reps line chart and a list of past sessions with goal completion status.
 struct StatsView: View {
     @EnvironmentObject var sessionStore: WorkoutSessionStore
+    private let chartBlue = Color.blue
 
     var body: some View {
         ScrollView {
@@ -35,7 +36,7 @@ struct StatsView: View {
                                 y: .value("Reps", session.repsCompleted)
                             )
                             .interpolationMethod(.catmullRom)
-                            .foregroundStyle(AppTheme.Colors.accent)
+                            .foregroundStyle(chartBlue)
                             .symbol(Circle())
                             .lineStyle(StrokeStyle(lineWidth: 2))
 
@@ -46,22 +47,29 @@ struct StatsView: View {
                             .annotation(position: .top) {
                                 Text(session.date.formatted(.dateTime.day().month(.abbreviated)))
                                     .font(AppTheme.Fonts.caption)
-                                    .foregroundColor(AppTheme.Colors.accent)
+                                    .foregroundColor(chartBlue)
                             }
                         }
                     }
                     .chartXAxis {
                         AxisMarks(values: .automatic(desiredCount: 4)) { value in
-                            AxisGridLine()
+                            AxisGridLine(stroke: StrokeStyle(lineWidth: 1))
+                                .foregroundStyle(Color.black)
                             AxisValueLabel {
                                 if let date = value.as(Date.self) {
                                     Text(date.formatted(.dateTime.day().month(.abbreviated)))
+                                        .foregroundColor(.red)
                                 }
                             }
                         }
                     }
                     .chartYAxis {
-                        AxisMarks(position: .leading)
+                        AxisMarks(position: .leading) {
+                            AxisGridLine(stroke: StrokeStyle(lineWidth: 1))
+                                .foregroundStyle(Color.black)
+                            AxisValueLabel()
+                                .foregroundStyle(Color.red)
+                        }
                     }
                     .frame(height: 200)
                     .padding(.horizontal)
@@ -100,4 +108,3 @@ struct StatsView: View {
         .background(AppTheme.Colors.background.ignoresSafeArea())
     }
 }
-

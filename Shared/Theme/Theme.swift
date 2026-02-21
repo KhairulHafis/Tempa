@@ -3,14 +3,14 @@ import SwiftUI
 /// Centralized theme definitions for colors and fonts used across the app.
 struct AppTheme {
     struct Colors {
-        static let background = Color(red: 0.96, green: 0.90, blue: 0.80)
-        static let backgroundSecondary = Color(red: 0.91, green: 0.86, blue: 0.77)
-        static let primary = Color.brown
+        static let background = Color.white
+        static let backgroundSecondary = Color.white
+        static let primary = Color.black
         static let onPrimary = Color.white
-        static let accent = Color.yellow
+        static let accent = Color.black
         static let textPrimary = Color.black
         static let textSecondary = Color.gray
-        static let textOnAccent = Color.black
+        static let textOnAccent = Color.white
         static let cardBackground = Color.white
         static let success = Color.green
         static let failure = Color.red
