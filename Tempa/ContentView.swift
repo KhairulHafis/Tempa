@@ -2,7 +2,9 @@ import SwiftUI
 
 
 struct ContentView: View {
+    @EnvironmentObject private var authStore: AuthStore
     @State private var path: [String] = []
+    @State private var isSigningOut = false
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -15,6 +17,14 @@ struct ContentView: View {
                         .fontWeight(.bold)
                         .multilineTextAlignment(.center)
                         .foregroundColor(AppTheme.Colors.textPrimary)
+
+                    if let email = authStore.currentUserEmail {
+                        Text("Signed in as \(email)")
+                            .font(AppTheme.Fonts.caption)
+                            .foregroundColor(AppTheme.Colors.textSecondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
+                    }
 
                     Text(getQuoteOfTheDay())
                         .italic()
@@ -45,6 +55,24 @@ struct ContentView: View {
             }
             .padding()
             .background(AppTheme.Colors.background)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        Task {
+                            isSigningOut = true
+                            await authStore.signOut()
+                            isSigningOut = false
+                        }
+                    } label: {
+                        if isSigningOut {
+                            ProgressView()
+                        } else {
+                            Text("Sign Out")
+                        }
+                    }
+                    .disabled(isSigningOut)
+                }
+            }
 
             .navigationDestination(for: String.self) { value in
                 if value == "Workout" {
@@ -68,4 +96,3 @@ struct ContentView: View {
         return quotes.randomElement() ?? ""
     }
 }
-

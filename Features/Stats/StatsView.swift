@@ -23,6 +23,14 @@ struct StatsView: View {
                     .font(AppTheme.Fonts.headline)
                     .foregroundColor(AppTheme.Colors.primary)
 
+                if let syncErrorMessage = sessionStore.syncErrorMessage {
+                    Text("Cloud sync issue: \(syncErrorMessage)")
+                        .font(AppTheme.Fonts.caption)
+                        .foregroundColor(AppTheme.Colors.error)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                }
+
                 if sessionStore.sessions.isEmpty {
                     Text("No workout data yet.")
                         .foregroundColor(AppTheme.Colors.textSecondary)

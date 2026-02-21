@@ -24,7 +24,8 @@ Tempa is an iOS app that tracks pull-up workouts using your iPhone’s camera an
 - **AVFoundation**: Camera capture
 - **Vision**: Body pose detection
 - **Charts**: Data visualization
-- **UserDefaults**: Local persistence
+- **Supabase Auth + PostgREST**: User auth and cloud workout history
+- **Keychain + UserDefaults**: Secure session storage and per-user local cache
 
 ## Getting started
 
@@ -32,4 +33,40 @@ Tempa is an iOS app that tracks pull-up workouts using your iPhone’s camera an
 
 ```bash
 git clone https://github.com/KhairulHafis/Tempa.git
+```
 
+### 2) Configure Supabase auth
+
+The app now requires two configuration values for authentication:
+
+- `SUPABASE_URL`
+- `SUPABASE_ANON_KEY`
+
+You can set these either:
+
+- In your Xcode scheme environment variables, or
+- As Info.plist keys (`SUPABASE_URL`, `SUPABASE_ANON_KEY`)
+
+### 3) Create Supabase table + RLS policies
+
+Run the SQL in `supabase/workout_sessions.sql` inside your Supabase SQL editor.
+
+This creates `public.workout_sessions` and enables row-level security so users can only read/write their own sessions.
+
+### 4) Run in Xcode
+
+Open `Tempa.xcodeproj`, choose an iOS Simulator, and run the `Tempa` scheme.
+
+## Supabase auth flow implemented
+
+- Email/password sign up
+- Email/password sign in
+- Session persistence across app launches
+- Access-token refresh when session is expired
+- Sign out from app
+
+## Data persistence implemented
+
+- Auth session stored in iOS Keychain
+- Workout sessions cached locally per user ID
+- Workout sessions synced to Supabase table per authenticated user
